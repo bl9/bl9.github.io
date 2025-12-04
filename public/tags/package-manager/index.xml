@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><?xml-stylesheet href="/feed_style.xsl" type="text/xsl"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="https://www.rssboard.org/media-rss">
+  <channel>
+    <title>Package-Manager on Bl9 Rambling</title>
+    <link>https://bl9.github.io/tags/package-manager/</link>
+    <description>Recent content in Package-Manager on Bl9 Rambling</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 03 Jul 2023 15:30:00 -0500</lastBuildDate><atom:link href="https://bl9.github.io/tags/package-manager/index.xml" rel="self" type="application/rss+xml" /><icon>https://bl9.github.io/img/icon.svg</icon>
+    
+    
+    <item>
+      <title>Introduction to Nix: Getting Started with Nix Package Manager</title>
+      <link>https://bl9.github.io/posts/introduction-to-nix/</link>
+      <pubDate>Mon, 03 Jul 2023 15:30:00 -0500</pubDate>
+      
+      <guid>https://bl9.github.io/posts/introduction-to-nix/</guid>
+      <description><![CDATA[<h2 id="introduction-to-nix">Introduction to Nix</h2>
+<p>Nix is great but the learning curve is a bit steep and it takes time to start building production stuff with it. Nevertheless, I&rsquo;d say the best way to learn is to start your own configuration and build on top of that.</p>
+<p>In this article, I will be dissecting the basics of Nix and will be going through number of basic and simple recipes that can be done with <code>nix</code>. I am planning to add more in the future.</p>
+<p>Let&rsquo;s start by exploring different scenario in <code>nix repl</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-nix" data-lang="nix"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">❯</span> nix repl
+</span></span><span style="display:flex;"><span>Welcome to Nix <span style="color:#ae81ff">2</span><span style="color:#ae81ff">.13.3</span><span style="color:#f92672">.</span> Type :<span style="color:#f92672">?</span> for help<span style="color:#f92672">.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>nix-repl<span style="color:#f92672">&gt;</span>
+</span></span></code></pre></div><p>Loading all nix expressions and adding them to current scope:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-nix" data-lang="nix"><span style="display:flex;"><span>nix-repl<span style="color:#f92672">&gt;</span> :l <span style="color:#e6db74">&lt;nixpkgs&gt;</span>
+</span></span><span style="display:flex;"><span>Added <span style="color:#ae81ff">19653</span> variables<span style="color:#f92672">.</span>
+</span></span></code></pre></div><p>To list and count the loaded packages:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-nix" data-lang="nix"><span style="display:flex;"><span>nix-repl<span style="color:#f92672">&gt;</span> builtins<span style="color:#f92672">.</span>length(builtins<span style="color:#f92672">.</span>attrNames pkgs)
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">19654</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>nix-repl<span style="color:#f92672">&gt;</span> builtins<span style="color:#f92672">.</span>attrNames pkgs
+</span></span><span style="display:flex;"><span>[ <span style="color:#e6db74">&#34;AAAAAASomeThingsFailToEvaluate&#34;</span> <span style="color:#e6db74">&#34;AMB-plugins&#34;</span> <span style="color:#e6db74">&#34;ArchiSteamFarm&#34;</span>  <span style="color:#f92672">..</span> ]
+</span></span></code></pre></div><p>If you&rsquo;re wondering about the <code>builtins</code> functions, you can simply ready the documentation about that within the repl:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-nix" data-lang="nix"><span style="display:flex;"><span>nix-repl<span style="color:#f92672">&gt;</span> :doc builtins<span style="color:#f92672">.</span>attrNames
+</span></span><span style="display:flex;"><span>Synopsis: builtins<span style="color:#f92672">.</span>attrNames set
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    Return the names of the attributes in the set set in an alphabetically sorted list<span style="color:#f92672">.</span> For instance<span style="color:#960050;background-color:#1e0010">,</span> builtins<span style="color:#f92672">.</span>attrNames { y <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; x <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;foo&#34;</span>; } evaluates to [ <span style="color:#e6db74">&#34;x&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;y&#34;</span> ]<span style="color:#f92672">.</span>
+</span></span></code></pre></div><p>To verify if <code>pkgs</code> is a set:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-nix" data-lang="nix"><span style="display:flex;"><span>nix-repl<span style="color:#f92672">&gt;</span> :doc builtins<span style="color:#f92672">.</span>isAttrs
+</span></span><span style="display:flex;"><span>Synopsis: builtins<span style="color:#f92672">.</span>isAttrs e
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    Return <span style="color:#66d9ef">true</span> <span style="color:#66d9ef">if</span> e evaluates to a set<span style="color:#960050;background-color:#1e0010">,</span> and <span style="color:#66d9ef">false</span> otherwise<span style="color:#f92672">.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>nix-repl<span style="color:#f92672">&gt;</span> builtins<span style="color:#f92672">.</span>isAttrs pkgs
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">true</span>
+</span></span></code></pre></div><p><strong>Note:</strong> <em>If you are like me wondering how <code>pkgs</code> was implicitly defined, I believe it&rsquo;s because it&rsquo;s defined in the <code>nixpkgs</code> upstream so you can pull the packages from <code>pkgs</code> folder/variable.</em></p>
+<p>Another question is why <code>&lt;nixpkgs&gt;</code> used instead of <code>nixpkgs</code> directly, why <code>&lt;&gt;</code> is needed? 🤔</p>
+<p>It looks like</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-nix" data-lang="nix"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">❯</span> nix-instantiate <span style="color:#960050;background-color:#1e0010">--</span>eval <span style="color:#960050;background-color:#1e0010">--</span>expr <span style="color:#960050;background-color:#1e0010">&#39;&amp;</span>lt;nixpkgs<span style="color:#f92672">&gt;</span><span style="color:#960050;background-color:#1e0010">&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">/Users/s0x/.nix-defexpr/channels/nixpkgs</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># OR:</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># nix-repl&gt; &lt;nixpkgs&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># /Users/s0x/.nix-defexpr/channels/nixpkgs</span>
+</span></span></code></pre></div><p>So based on the above, it tells us that <code>&lt;nixpkgs&gt;</code> is an expression used to search for <code>nixpkgs</code> in the Nix paths that are defined in the environment variables (<code>$NIX_PATH or -I</code>). Another proof:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-nix" data-lang="nix"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">❯</span> nix-instantiate <span style="color:#960050;background-color:#1e0010">--</span>eval <span style="color:#960050;background-color:#1e0010">--</span>expr <span style="color:#960050;background-color:#1e0010">&#39;&amp;</span>lt;mew<span style="color:#f92672">&gt;</span><span style="color:#960050;background-color:#1e0010">&#39;</span>
+</span></span><span style="display:flex;"><span>error: file <span style="color:#960050;background-color:#1e0010">&#39;</span>mew&#39; was not found in the Nix search path (add it using <span style="color:#960050;background-color:#1e0010">$</span>NIX_PATH or <span style="color:#960050;background-color:#1e0010">-</span>I)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>       at <span style="color:#960050;background-color:#1e0010">«</span>string<span style="color:#960050;background-color:#1e0010">»</span>:<span style="color:#ae81ff">1</span>:<span style="color:#ae81ff">1</span>:
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#ae81ff">1</span><span style="color:#960050;background-color:#1e0010">|</span> <span style="color:#e6db74">&lt;mew&gt;</span>
+</span></span><span style="display:flex;"><span>             <span style="color:#960050;background-color:#1e0010">|</span> <span style="color:#960050;background-color:#1e0010">^</span>
+</span></span></code></pre></div><p>Let&rsquo;s try and build python derivation:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-nix" data-lang="nix"><span style="display:flex;"><span>nix-repl<span style="color:#f92672">&gt;</span> :b python310
+</span></span><span style="display:flex;"><span>This derivation produced the following outputs:
+</span></span><span style="display:flex;"><span>  out <span style="color:#f92672">-&gt;</span> <span style="color:#e6db74">/nix/store/m4kmky8ay96qwyakxjmj1idcvrdmvb9k-python3-3.10.12</span>
+</span></span></code></pre></div><p>We can verify the built derivation by accessing the python shell after *exiting the <code>nix repl</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>❯ /nix/store/m4kmky8ay96qwyakxjmj1idcvrdmvb9k-python3-3.10.12/bin/python
+</span></span><span style="display:flex;"><span>Python 3.10.12 <span style="color:#f92672">(</span>main, Aug <span style="color:#ae81ff">31</span> 2023, 13:04:33<span style="color:#f92672">)</span> <span style="color:#f92672">[</span>Clang 11.1.0 <span style="color:#f92672">]</span> on darwin
+</span></span><span style="display:flex;"><span>Type <span style="color:#e6db74">&#34;help&#34;</span>, <span style="color:#e6db74">&#34;copyright&#34;</span>, <span style="color:#e6db74">&#34;credits&#34;</span> or <span style="color:#e6db74">&#34;license&#34;</span> <span style="color:#66d9ef">for</span> more information.
+</span></span><span style="display:flex;"><span>&gt;&gt;&gt;
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-nix" data-lang="nix"><span style="display:flex;"><span>nix-repl<span style="color:#f92672">&gt;</span> :b python311<span style="color:#f92672">.</span>withPackages(p: [p<span style="color:#f92672">.</span>requests])
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>This derivation produced the following outputs:
+</span></span><span style="display:flex;"><span>  out <span style="color:#f92672">-&gt;</span> <span style="color:#e6db74">/nix/store/bl65mjkcchgamgqw1zw9ns46p4gpi1wh-python3-3.11.4-env</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># exit nix repl</span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">❯</span> <span style="color:#e6db74">/nix/store/bl65mjkcchgamgqw1zw9ns46p4gpi1wh-python3-3.11.4-env/bin/python</span>
+</span></span><span style="display:flex;"><span>Python <span style="color:#ae81ff">3</span><span style="color:#ae81ff">.11.4</span> (main<span style="color:#960050;background-color:#1e0010">,</span> Aug <span style="color:#ae81ff">31</span> <span style="color:#ae81ff">2023</span><span style="color:#960050;background-color:#1e0010">,</span> <span style="color:#ae81ff">13</span>:<span style="color:#ae81ff">04</span>:<span style="color:#ae81ff">34</span>) [Clang <span style="color:#ae81ff">11</span><span style="color:#ae81ff">.1.0</span> ] on darwin
+</span></span><span style="display:flex;"><span>Type <span style="color:#e6db74">&#34;help&#34;</span><span style="color:#960050;background-color:#1e0010">,</span> <span style="color:#e6db74">&#34;copyright&#34;</span><span style="color:#960050;background-color:#1e0010">,</span> <span style="color:#e6db74">&#34;credits&#34;</span> or <span style="color:#e6db74">&#34;license&#34;</span> for more information<span style="color:#f92672">.</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&gt;&gt;&gt;</span> <span style="color:#f92672">import</span> requests
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&gt;&gt;&gt;</span>
+</span></span></code></pre></div><p>Nix Closure is the Nix&rsquo;s package dependency tree. It includes all the packages required to build and run the package.</p>
+<p>Channels
+A channel is a git repository containing a list of packages.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-nix" data-lang="nix"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">❯</span> nix-channel <span style="color:#960050;background-color:#1e0010">--</span>list
+</span></span><span style="display:flex;"><span>darwin <span style="color:#e6db74">https://github.com/LnL7/nix-darwin/archive/master.tar.gz</span>
+</span></span><span style="display:flex;"><span>nixpkgs <span style="color:#e6db74">https://github.com/NixOS/nixpkgs/archive/staging-next.tar.gz</span>
+</span></span></code></pre></div><p>Profiles
+Profiles are groups of generations so that different users don’t interfere with each other if they don’t want to. Profiles and User Environments are Nix’s mechanisms to allow different users to use different configurations.</p>
+<p>Derivation
+A Derivation is a Nix expression describing everything that goes into a package build action (build tools, dependencies, sources, build scripts, environment variables). It is anything needed to build up a package</p>
+]]></description>
+      
+    </item>
+    
+    
+  </channel>
+</rss>

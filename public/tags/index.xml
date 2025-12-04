@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><?xml-stylesheet href="/feed_style.xsl" type="text/xsl"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="https://www.rssboard.org/media-rss">
+  <channel>
+    <title>Tags on Bl9 Rambling</title>
+    <link>https://bl9.github.io/tags/</link>
+    <description>Recent content in Tags on Bl9 Rambling</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 03 Oct 2023 14:20:00 -0500</lastBuildDate><atom:link href="https://bl9.github.io/tags/index.xml" rel="self" type="application/rss+xml" /><icon>https://bl9.github.io/img/icon.svg</icon>
+    
+    
+    <item>
+      <title>Aws</title>
+      <link>https://bl9.github.io/tags/aws/</link>
+      <pubDate>Tue, 03 Oct 2023 14:20:00 -0500</pubDate>
+      
+      <guid>https://bl9.github.io/tags/aws/</guid>
+      <description><![CDATA[]]></description>
+      
+    </item>
+    
+    
+    
+    <item>
+      <title>Benchmarking</title>
+      <link>https://bl9.github.io/tags/benchmarking/</link>
+      <pubDate>Tue, 03 Oct 2023 14:20:00 -0500</pubDate>
+      
+      <guid>https://bl9.github.io/tags/benchmarking/</guid>
+      <description><![CDATA[]]></description>
+      
+    </item>
+    
+    
+    
+    <item>
+      <title>Devops</title>
+      <link>https://bl9.github.io/tags/devops/</link>
+      <pubDate>Tue, 03 Oct 2023 14:20:00 -0500</pubDate>
+      
+      <guid>https://bl9.github.io/tags/devops/</guid>
+      <description><![CDATA[]]></description>
+      
+    </item>
+    
+    
+    
+    <item>
+      <title>Ebs</title>
+      <link>https://bl9.github.io/tags/ebs/</link>
+      <pubDate>Tue, 03 Oct 2023 14:20:00 -0500</pubDate>
+      
+      <guid>https://bl9.github.io/tags/ebs/</guid>
+      <description><![CDATA[]]></description>
+      
+    </item>
+    
+    
+    
+    <item>
+      <title>Ec2</title>
+      <link>https://bl9.github.io/tags/ec2/</link>
+      <pubDate>Tue, 03 Oct 2023 14:20:00 -0500</pubDate>
+      
+      <guid>https://bl9.github.io/tags/ec2/</guid>
+      <description><![CDATA[]]></description>
+      
+    </item>
+    
+    
+    
+    <item>
+      <title>Fio</title>
+      <link>https://bl9.github.io/tags/fio/</link>
+      <pubDate>Tue, 03 Oct 2023 14:20:00 -0500</pubDate>
+      
+      <guid>https://bl9.github.io/tags/fio/</guid>
+      <description><![CDATA[]]></description>
+      
+    </item>
+    
+    
+    
+    <item>
+      <title>Nvme</title>
+      <link>https://bl9.github.io/tags/nvme/</link>
+      <pubDate>Tue, 03 Oct 2023 14:20:00 -0500</pubDate>
+      
+      <guid>https://bl9.github.io/tags/nvme/</guid>
+      <description><![CDATA[]]></description>
+      
+    </item>
+    
+    
+    
+    <item>
+      <title>Performance</title>
+      <link>https://bl9.github.io/tags/performance/</link>
+      <pubDate>Tue, 03 Oct 2023 14:20:00 -0500</pubDate>
+      
+      <guid>https://bl9.github.io/tags/performance/</guid>
+      <description><![CDATA[]]></description>
+      
+    </item>
+    
+    
+    
+    <item>
+      <title>Storage</title>
+      <link>https://bl9.github.io/tags/storage/</link>
+      <pubDate>Tue, 03 Oct 2023 14:20:00 -0500</pubDate>
+      
+      <guid>https://bl9.github.io/tags/storage/</guid>
+      <description><![CDATA[]]></description>
+      
+    </item>
+    
+    
+    
+    <item>
+      <title>Linux</title>
+      <link>https://bl9.github.io/tags/linux/</link>
+      <pubDate>Mon, 03 Jul 2023 15:30:00 -0500</pubDate>
+      
+      <guid>https://bl9.github.io/tags/linux/</guid>
+      <description><![CDATA[]]></description>
+      
+    </item>
+    
+    
+    
+    <item>
+      <title>Macos</title>
+      <link>https://bl9.github.io/tags/macos/</link>
+      <pubDate>Mon, 03 Jul 2023 15:30:00 -0500</pubDate>
+      
+      <guid>https://bl9.github.io/tags/macos/</guid>
+      <description><![CDATA[]]></description>
+      
+    </item>
+    
+    
+    
+    <item>
+      <title>Nix</title>
+      <link>https://bl9.github.io/tags/nix/</link>
+      <pubDate>Mon, 03 Jul 2023 15:30:00 -0500</pubDate>
+      
+      <guid>https://bl9.github.io/tags/nix/</guid>
+      <description><![CDATA[]]></description>
+      
+    </item>
+    
+    
+    
+    <item>
+      <title>Nixpkgs</title>
+      <link>https://bl9.github.io/tags/nixpkgs/</link>
+      <pubDate>Mon, 03 Jul 2023 15:30:00 -0500</pubDate>
+      
+      <guid>https://bl9.github.io/tags/nixpkgs/</guid>
+      <description><![CDATA[]]></description>
+      
+    </item>
+    
+    
+    
+    <item>
+      <title>Package-Manager</title>
+      <link>https://bl9.github.io/tags/package-manager/</link>
+      <pubDate>Mon, 03 Jul 2023 15:30:00 -0500</pubDate>
+      
+      <guid>https://bl9.github.io/tags/package-manager/</guid>
+      <description><![CDATA[]]></description>
+      
+    </item>
+    
+    
+    
+    <item>
+      <title>Tutorial</title>
+      <link>https://bl9.github.io/tags/tutorial/</link>
+      <pubDate>Mon, 03 Jul 2023 15:30:00 -0500</pubDate>
+      
+      <guid>https://bl9.github.io/tags/tutorial/</guid>
+      <description><![CDATA[]]></description>
+      
+    </item>
+    
+    
+  </channel>
+</rss>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><?xml-stylesheet href="/feed_style.xsl" type="text/xsl"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="https://www.rssboard.org/media-rss">
+  <channel>
+    <title>Cloud on Bl9 Rambling</title>
+    <link>https://bl9.github.io/categories/cloud/</link>
+    <description>Recent content in Cloud on Bl9 Rambling</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 03 Oct 2023 14:20:00 -0500</lastBuildDate><atom:link href="https://bl9.github.io/categories/cloud/index.xml" rel="self" type="application/rss+xml" /><icon>https://bl9.github.io/img/icon.svg</icon>
+    
+    
+    <item>
+      <title>Benchmarking EC2 NVMe Storage: EBS vs Instance Store Performance</title>
+      <link>https://bl9.github.io/posts/benchmarking-aws-ec2-nvme-storage/</link>
+      <pubDate>Tue, 03 Oct 2023 14:20:00 -0500</pubDate>
+      
+      <guid>https://bl9.github.io/posts/benchmarking-aws-ec2-nvme-storage/</guid>
+      <description><![CDATA[<h2 id="quick-primer-ebs-vs-instance-store">Quick Primer: EBS vs Instance Store</h2>
+<p>Before we start throwing benchmarks around, let&rsquo;s clarify what we&rsquo;re actually testing here.</p>
+<p><strong>Instance Store NVMe</strong>: This is the physical SSD attached directly to your EC2 host. Think of it as the internal hard drive of your server. It&rsquo;s blazingly fast because there&rsquo;s no network in the way. The catch? It&rsquo;s ephemeral - if your instance stops or terminates, poof, your data is gone. Perfect for caches, temporary processing, or anything you can rebuild.</p>
+<p><strong>EBS (Elastic Block Store)</strong>: This is network-attached storage that persists independently of your instance. It&rsquo;s like having an external drive that you can unplug from one computer and attach to another. More flexible, but there&rsquo;s a network hop involved which affects performance.</p>
+<h3 id="ebs-volume-types-the-simple-version">EBS Volume Types: The Simple Version</h3>
+<p>AWS offers several EBS types, and honestly, the naming could be better:</p>
+<p><strong>gp3 (General Purpose SSD)</strong> - The new default and probably what you want 99% of the time. You get 3,000 IOPS and 125 MB/s baseline, and you can tune IOPS and throughput independently. It&rsquo;s like ordering a burger where you can customize the toppings separately from the patty size.</p>
+<p><strong>gp2 (General Purpose SSD)</strong> - The old default. IOPS scale with volume size (3 IOPS per GB), which means you sometimes had to buy a bigger volume just to get more performance. Kind of like having to order a large drink to get free refills.</p>
+<p><strong>io2/io2 Block Express</strong> - For when you need serious, consistent IOPS. We&rsquo;re talking up to 64,000 IOPS per volume (or 256,000 with Block Express). These are expensive and you&rsquo;ll know if you need them. Think databases with heavy random I/O patterns.</p>
+<p><strong>st1 (Throughput Optimized HDD)</strong> - Spinning disks optimized for sequential throughput. Good for big data workloads where you&rsquo;re reading large files sequentially. Cheaper, but slow for random access.</p>
+<p><strong>sc1 (Cold HDD)</strong> - The budget option for infrequently accessed data. If you&rsquo;re considering this, you might want to think about S3 instead.</p>
+<h2 id="benchmarking-with-fio">Benchmarking with fio</h2>
+<p><code>fio</code> (Flexible I/O Tester) is the de facto standard for storage benchmarking. It&rsquo;s powerful, which also means it has about a million options. This post will only discuss the basics of it.</p>
+<p>First, install it:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Amazon Linux / RHEL / CentOS</span>
+</span></span><span style="display:flex;"><span>sudo yum install -y fio
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Ubuntu / Debian</span>
+</span></span><span style="display:flex;"><span>sudo apt-get install -y fio
+</span></span></code></pre></div><h3 id="a-real-world-benchmark">A Real-World Benchmark</h3>
+<p>Here&rsquo;s a benchmark I run regularly to get a feel for storage performance. This tests random read/write with a 4K block size, which mimics what most databases do:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo fio --name<span style="color:#f92672">=</span>random-rw <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --ioengine<span style="color:#f92672">=</span>libaio <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --iodepth<span style="color:#f92672">=</span><span style="color:#ae81ff">32</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --rw<span style="color:#f92672">=</span>randrw <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --rwmixread<span style="color:#f92672">=</span><span style="color:#ae81ff">70</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --bs<span style="color:#f92672">=</span>4k <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --direct<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --size<span style="color:#f92672">=</span>4G <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --numjobs<span style="color:#f92672">=</span><span style="color:#ae81ff">4</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --runtime<span style="color:#f92672">=</span><span style="color:#ae81ff">60</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --group_reporting <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --filename<span style="color:#f92672">=</span>/dev/nvme1n1
+</span></span></code></pre></div><p>Let me break down what this actually does:</p>
+<ul>
+<li><code>--name=random-rw</code>: Just a label for this test</li>
+<li><code>--ioengine=libaio</code>: Use Linux native async I/O (fast and realistic)</li>
+<li><code>--iodepth=32</code>: Keep 32 I/O operations in flight simultaneously</li>
+<li><code>--rw=randrw</code>: Random read AND write mixed together</li>
+<li><code>--rwmixread=70</code>: 70% reads, 30% writes (typical for many apps)</li>
+<li><code>--bs=4k</code>: 4 kilobyte blocks (database-like workload)</li>
+<li><code>--direct=1</code>: Bypass OS cache (we want to test the actual disk)</li>
+<li><code>--size=4G</code>: Test with 4GB of data</li>
+<li><code>--numjobs=4</code>: Run 4 parallel jobs (simulate concurrent access)</li>
+<li><code>--runtime=60</code>: Run for 60 seconds</li>
+<li><code>--filename=/dev/nvme1n1</code>: The device to test</li>
+</ul>
+<h3 id="decoding-the-fio-output">Decoding the fio Output</h3>
+<p>When fio finishes, it dumps a wall of text at you. Here&rsquo;s what actually matters:</p>
+<pre tabindex="0"><code>random-rw: (groupid=0, jobs=4): err= 0: pid=1234: Tue Oct  3 14:30:00 2023
+  read: IOPS=12.5k, BW=48.8MiB/s (51.2MB/s)(2932MiB/60001msec)
+    slat (usec): min=2, max=15234, avg=23.45, stdev=89.23
+    clat (usec): min=45, max=98234, avg=1876.34, stdev=2345.67
+     lat (usec): min=51, max=98256, avg=1899.79, stdev=2348.12
+  write: IOPS=5357, BW=20.9MiB/s (21.9MB/s)(1256MiB/60001msec)
+    slat (usec): min=3, max=24567, avg=34.56, stdev=123.45
+    clat (usec): min=67, max=145678, avg=2234.56, stdev=3456.78
+     lat (usec): min=73, max=145701, avg=2269.12, stdev=3459.23
+</code></pre><p><strong>IOPS (Input/Output Operations Per Second)</strong>: How many read or write operations the disk can handle per second. Higher is better. In this example, we&rsquo;re getting 12.5k read IOPS and 5.3k write IOPS.</p>
+<p><strong>BW (Bandwidth/Throughput)</strong>: How much data we&rsquo;re actually moving. In this case, 48.8 MiB/s for reads and 20.9 MiB/s for writes. This is the &ldquo;how fast can I copy files&rdquo; number.</p>
+<p><strong>Latency Numbers</strong> (this is where it gets interesting):</p>
+<ul>
+<li><code>slat</code> (submission latency): Time to submit the I/O request to the kernel</li>
+<li><code>clat</code> (completion latency): Time waiting for the I/O to complete</li>
+<li><code>lat</code> (total latency): The full round trip time - <strong>this is what you feel</strong></li>
+</ul>
+<p>The <code>avg</code> (average) latency is important, but the <code>max</code> tells you about those annoying hiccups. In the example above, average read latency is ~1.9ms, but max spiked to 98ms. That spike is what makes your app feel sluggish occasionally.</p>
+]]></description>
+      
+    </item>
+    
+    
+  </channel>
+</rss>
