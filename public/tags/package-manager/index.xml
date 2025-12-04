@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><?xml-stylesheet href="/feed_style.xsl" type="text/xsl"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="https://www.rssboard.org/media-rss">
   <channel>
     <title>Package-Manager on Bl9 Rambling</title>
-    <link>http://localhost:1313/tags/package-manager/</link>
+    <link>https://bl9.github.io/tags/package-manager/</link>
     <description>Recent content in Package-Manager on Bl9 Rambling</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 03 Jul 2023 15:30:00 -0500</lastBuildDate><atom:link href="http://localhost:1313/tags/package-manager/index.xml" rel="self" type="application/rss+xml" /><icon>http://localhost:1313/img/icon.svg</icon>
+    <lastBuildDate>Mon, 03 Jul 2023 15:30:00 -0500</lastBuildDate><atom:link href="https://bl9.github.io/tags/package-manager/index.xml" rel="self" type="application/rss+xml" /><icon>https://bl9.github.io/img/icon.svg</icon>
     
     
     <item>
       <title>Introduction to Nix: Getting Started with Nix Package Manager</title>
-      <link>http://localhost:1313/posts/introduction-to-nix/</link>
+      <link>https://bl9.github.io/posts/introduction-to-nix/</link>
       <pubDate>Mon, 03 Jul 2023 15:30:00 -0500</pubDate>
       
-      <guid>http://localhost:1313/posts/introduction-to-nix/</guid>
+      <guid>https://bl9.github.io/posts/introduction-to-nix/</guid>
       <description><![CDATA[<h2 id="introduction-to-nix">Introduction to Nix</h2>
 <p>Nix is great but the learning curve is a bit steep and it takes time to start building production stuff with it. Nevertheless, I&rsquo;d say the best way to learn is to start your own configuration and build on top of that.</p>
 <p>In this article, I will be dissecting the basics of Nix and will be going through number of basic and simple recipes that can be done with <code>nix</code>. I am planning to add more in the future.</p>
