@@ -1,0 +1,4 @@
+baseURL = 'https://bl9.github.io/'
+languageCode = 'en-us'
+title = 'Bl9 Rambling'
+theme = 'hugo-ficurini'
