@@ -1,0 +1,24 @@
+
+{
+    
+    
+    
+    
+    
+    
+    
+    
+        
+        
+        
+    
+        
+        
+        
+    
+    "articles": [{"date":"2023-10-03","image":"","imageAlt":"","link":"http://localhost:1313/posts/benchmarking-aws-ec2-nvme-storage/","summary":"A practical guide to benchmarking AWS EC2 NVMe storage performance using fio. Learn the differences between EBS volumes and instance store, decode fio output, and understand IOPS, throughput, and latency.","tags":["aws","benchmarking","devops","ebs","ec2","fio","nvme","performance","storage"],"title":"Benchmarking EC2 NVMe Storage: EBS vs Instance Store Performance"},{"date":"2023-07-03","image":"","imageAlt":"","link":"http://localhost:1313/posts/introduction-to-nix/","summary":"A practical introduction to Nix package manager covering basics, nix repl, derivations, channels, and profiles with hands-on examples.","tags":["devops","linux","macos","nix","nixpkgs","package-manager","tutorial"],"title":"Introduction to Nix: Getting Started with Nix Package Manager"}],
+    "test": "Benchmarking EC2 NVMe Storage: EBS vs Instance Store Performance   Introduction to Nix: Getting Started with Nix Package Manager   ",
+    "page": "1",
+    "next": ""
+}
+
