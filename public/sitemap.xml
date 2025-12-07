@@ -2,83 +2,83 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://bl9.github.io/tags/aws/</loc>
+    <loc>http://localhost:63024/</loc>
+    <lastmod>2025-12-07T14:55:06-05:00</lastmod>
+  </url><url>
+    <loc>http://localhost:63024/posts/</loc>
+    <lastmod>2025-12-07T14:55:06-05:00</lastmod>
+  </url><url>
+    <loc>http://localhost:63024/tags/aws/</loc>
     <lastmod>2023-10-03T14:20:00-05:00</lastmod>
   </url><url>
-    <loc>https://bl9.github.io/tags/benchmarking/</loc>
+    <loc>http://localhost:63024/tags/benchmarking/</loc>
     <lastmod>2023-10-03T14:20:00-05:00</lastmod>
   </url><url>
-    <loc>https://bl9.github.io/posts/benchmarking-aws-ec2-nvme-storage/</loc>
+    <loc>http://localhost:63024/posts/benchmarking-aws-ec2-nvme-storage/</loc>
     <lastmod>2023-10-03T14:20:00-05:00</lastmod>
   </url><url>
-    <loc>https://bl9.github.io/</loc>
+    <loc>http://localhost:63024/categories/</loc>
     <lastmod>2023-10-03T14:20:00-05:00</lastmod>
   </url><url>
-    <loc>https://bl9.github.io/categories/</loc>
+    <loc>http://localhost:63024/categories/cloud/</loc>
     <lastmod>2023-10-03T14:20:00-05:00</lastmod>
   </url><url>
-    <loc>https://bl9.github.io/categories/cloud/</loc>
+    <loc>http://localhost:63024/tags/devops/</loc>
     <lastmod>2023-10-03T14:20:00-05:00</lastmod>
   </url><url>
-    <loc>https://bl9.github.io/tags/devops/</loc>
+    <loc>http://localhost:63024/tags/ebs/</loc>
     <lastmod>2023-10-03T14:20:00-05:00</lastmod>
   </url><url>
-    <loc>https://bl9.github.io/tags/ebs/</loc>
+    <loc>http://localhost:63024/tags/ec2/</loc>
     <lastmod>2023-10-03T14:20:00-05:00</lastmod>
   </url><url>
-    <loc>https://bl9.github.io/tags/ec2/</loc>
+    <loc>http://localhost:63024/tags/fio/</loc>
     <lastmod>2023-10-03T14:20:00-05:00</lastmod>
   </url><url>
-    <loc>https://bl9.github.io/tags/fio/</loc>
+    <loc>http://localhost:63024/tags/nvme/</loc>
     <lastmod>2023-10-03T14:20:00-05:00</lastmod>
   </url><url>
-    <loc>https://bl9.github.io/tags/nvme/</loc>
+    <loc>http://localhost:63024/categories/performance/</loc>
     <lastmod>2023-10-03T14:20:00-05:00</lastmod>
   </url><url>
-    <loc>https://bl9.github.io/categories/performance/</loc>
+    <loc>http://localhost:63024/tags/performance/</loc>
     <lastmod>2023-10-03T14:20:00-05:00</lastmod>
   </url><url>
-    <loc>https://bl9.github.io/tags/performance/</loc>
+    <loc>http://localhost:63024/tags/storage/</loc>
     <lastmod>2023-10-03T14:20:00-05:00</lastmod>
   </url><url>
-    <loc>https://bl9.github.io/posts/</loc>
+    <loc>http://localhost:63024/tags/</loc>
     <lastmod>2023-10-03T14:20:00-05:00</lastmod>
   </url><url>
-    <loc>https://bl9.github.io/tags/storage/</loc>
-    <lastmod>2023-10-03T14:20:00-05:00</lastmod>
-  </url><url>
-    <loc>https://bl9.github.io/tags/</loc>
-    <lastmod>2023-10-03T14:20:00-05:00</lastmod>
-  </url><url>
-    <loc>https://bl9.github.io/categories/development/</loc>
+    <loc>http://localhost:63024/categories/development/</loc>
     <lastmod>2023-07-03T15:30:00-05:00</lastmod>
   </url><url>
-    <loc>https://bl9.github.io/posts/introduction-to-nix/</loc>
+    <loc>http://localhost:63024/posts/introduction-to-nix/</loc>
     <lastmod>2023-07-03T15:30:00-05:00</lastmod>
   </url><url>
-    <loc>https://bl9.github.io/tags/linux/</loc>
+    <loc>http://localhost:63024/tags/linux/</loc>
     <lastmod>2023-07-03T15:30:00-05:00</lastmod>
   </url><url>
-    <loc>https://bl9.github.io/tags/macos/</loc>
+    <loc>http://localhost:63024/tags/macos/</loc>
     <lastmod>2023-07-03T15:30:00-05:00</lastmod>
   </url><url>
-    <loc>https://bl9.github.io/tags/nix/</loc>
+    <loc>http://localhost:63024/tags/nix/</loc>
     <lastmod>2023-07-03T15:30:00-05:00</lastmod>
   </url><url>
-    <loc>https://bl9.github.io/tags/nixpkgs/</loc>
+    <loc>http://localhost:63024/tags/nixpkgs/</loc>
     <lastmod>2023-07-03T15:30:00-05:00</lastmod>
   </url><url>
-    <loc>https://bl9.github.io/tags/package-manager/</loc>
+    <loc>http://localhost:63024/tags/package-manager/</loc>
     <lastmod>2023-07-03T15:30:00-05:00</lastmod>
   </url><url>
-    <loc>https://bl9.github.io/categories/tools/</loc>
+    <loc>http://localhost:63024/categories/tools/</loc>
     <lastmod>2023-07-03T15:30:00-05:00</lastmod>
   </url><url>
-    <loc>https://bl9.github.io/tags/tutorial/</loc>
+    <loc>http://localhost:63024/tags/tutorial/</loc>
     <lastmod>2023-07-03T15:30:00-05:00</lastmod>
   </url><url>
-    <loc>https://bl9.github.io/manifest/index.json</loc>
+    <loc>http://localhost:63024/manifest/index.json</loc>
   </url><url>
-    <loc>https://bl9.github.io/search/</loc>
+    <loc>http://localhost:63024/search/</loc>
   </url>
 </urlset>

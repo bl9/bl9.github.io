@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><?xml-stylesheet href="/feed_style.xsl" type="text/xsl"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="https://www.rssboard.org/media-rss">
   <channel>
     <title>Ec2 on Bl9 Rambling</title>
-    <link>https://bl9.github.io/tags/ec2/</link>
+    <link>http://localhost:63024/tags/ec2/</link>
     <description>Recent content in Ec2 on Bl9 Rambling</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 03 Oct 2023 14:20:00 -0500</lastBuildDate><atom:link href="https://bl9.github.io/tags/ec2/index.xml" rel="self" type="application/rss+xml" /><icon>https://bl9.github.io/img/icon.svg</icon>
+    <lastBuildDate>Tue, 03 Oct 2023 14:20:00 -0500</lastBuildDate><atom:link href="http://localhost:63024/tags/ec2/index.xml" rel="self" type="application/rss+xml" /><icon>http://localhost:63024/img/icon.svg</icon>
     
     
     <item>
       <title>Benchmarking EC2 NVMe Storage: EBS vs Instance Store Performance</title>
-      <link>https://bl9.github.io/posts/benchmarking-aws-ec2-nvme-storage/</link>
+      <link>http://localhost:63024/posts/benchmarking-aws-ec2-nvme-storage/</link>
       <pubDate>Tue, 03 Oct 2023 14:20:00 -0500</pubDate>
       
-      <guid>https://bl9.github.io/posts/benchmarking-aws-ec2-nvme-storage/</guid>
+      <guid>http://localhost:63024/posts/benchmarking-aws-ec2-nvme-storage/</guid>
       <description><![CDATA[<h2 id="quick-primer-ebs-vs-instance-store">Quick Primer: EBS vs Instance Store</h2>
 <p>Before we start throwing benchmarks around, let&rsquo;s clarify what we&rsquo;re actually testing here.</p>
 <p><strong>Instance Store NVMe</strong>: This is the physical SSD attached directly to your EC2 host. Think of it as the internal hard drive of your server. It&rsquo;s blazingly fast because there&rsquo;s no network in the way. The catch? It&rsquo;s ephemeral - if your instance stops or terminates, poof, your data is gone. Perfect for caches, temporary processing, or anything you can rebuild.</p>
