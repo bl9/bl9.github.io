@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><?xml-stylesheet href="/feed_style.xsl" type="text/xsl"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="https://www.rssboard.org/media-rss">
   <channel>
     <title>Algorithms on Bl9 Rambling</title>
-    <link>http://localhost:1313/categories/algorithms/</link>
+    <link>https://bl9.github.io/categories/algorithms/</link>
     <description>Recent content in Algorithms on Bl9 Rambling</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 07 Dec 2025 14:55:06 -0500</lastBuildDate><atom:link href="http://localhost:1313/categories/algorithms/index.xml" rel="self" type="application/rss+xml" /><icon>http://localhost:1313/img/icon.svg</icon>
+    <lastBuildDate>Sun, 07 Dec 2025 14:55:06 -0500</lastBuildDate><atom:link href="https://bl9.github.io/categories/algorithms/index.xml" rel="self" type="application/rss+xml" /><icon>https://bl9.github.io/img/icon.svg</icon>
     
     
     <item>
       <title>Ucs Shortest Path Algorithm</title>
-      <link>http://localhost:1313/posts/ucs-shortest-path-algorithm/</link>
+      <link>https://bl9.github.io/posts/ucs-shortest-path-algorithm/</link>
       <pubDate>Sun, 07 Dec 2025 14:55:06 -0500</pubDate>
       
-      <guid>http://localhost:1313/posts/ucs-shortest-path-algorithm/</guid>
+      <guid>https://bl9.github.io/posts/ucs-shortest-path-algorithm/</guid>
       <description><![CDATA[<p>UCS is a shortest path algorith that&rsquo;s similar to Dijkstra algorithm. The only difference is that UCS will terminate as soon as it finds the goal node, while Dijkstra will continue to explore all possible paths until it has found the shortest path to all nodes in the graph.</p>
 <p>So based on that, to implement UCS, we can use a priority queue to keep track of the nodes to be explored, sorted by their cumulative cost from the start node. We will also maintain a set of visited nodes to avoid processing the same node multiple times.</p>
 <p>To summarize the steps of UCS algorithm:</p>
