@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html class="" lang="en-us"><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    
+    <meta name="robots" content="noai, noimageai">
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=7" />
+
+    <link
+    rel="icon"
+    href='/favicon.png'
+/>
+<link
+    rel="shortcut icon"
+    href='/favicon.ico'
+    type="image/x-icon"
+/>
+<link
+    rel="apple-touch-icon"
+    href='/apple-touch-icon.png'
+/>
+
+<title>
+        
+            Ucs Shortest Path Algorithm  &ndash;
+        
+        Bl9 Rambling
+    </title>
+
+    
+    <link href="/symbols-nerd-font/symbols-nerd-font.css" rel="stylesheet" />
+    <link href="/jetbrains-mono/jetbrains-mono.css" rel="stylesheet" />
+
+    
+    
+    <link type="text/css" rel="stylesheet" href=http://localhost:1313/css/styles.abbd6311bb4b6ca58f8e7398140529245ae0f6428b759fcd830742eee2619eabb900ba9914a9affb82aa9a16a9b9ea727bb315315a976a0db0e7513a5f12c504.css integrity="sha512-q71jEbtLbKWPjnOYFAUpJFrg9kKLdZ/NgwdC7uJhnqu5ALqZFKmv&#43;4Kqmhapuepye7MVMVqXag2w51E6XxLFBA==" />
+<meta name="author" content="" />
+
+    
+    
+        <meta name="description" content=" path algorith that&amp;rsquo;s similar to Dijkstra algorithm. The only difference is that UCS will terminate as soon as it finds the goal node, while Dijkstra will continue to explore all possible paths until it has found the shortest path to all nodes in the graph.&lt;/p&gt;
+&lt;p&gt;So based on that, to implement UCS, we can use a priority queue to keep track of the nodes to be explored, sorted by their cumulative cost from the start node. We will also maintain a set of visited nodes to avoid processing the same node multiple times.&lt;/p&gt;" />
+    
+
+<meta property="og:site_name"
+    content='Bl9 Rambling' />
+
+    <meta property="og:title" content="Ucs Shortest Path Algorithm" />
+    <meta property="og:type" content="article" />
+    
+    <meta
+        property="article:author" content="" />
+    
+    <meta
+        property="article:published_time"
+        content='2025-12-07T14:55:06Z-0500' />
+    
+    <meta property="og:url" content="http://localhost:1313/posts/ucs-shortest-path-algorithm/" />
+    
+    
+    <meta property="og:image"
+        content="http://localhost:1313/img/icon.svg" />
+    
+        <meta property="og:description" content="&lt;p&gt;UCS is a shortest path algorith that&amp;rsquo;s similar to Dijkstra algorithm. The only difference is that UCS will terminate as soon as it finds the goal node," />
+    
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:domain"
+      content='localhost:1313'
+/>
+<meta property="twitter:url" content="http://localhost:1313/posts/ucs-shortest-path-algorithm/" />
+
+
+    <meta name="twitter:title" content="Ucs Shortest Path Algorithm" />
+    
+    
+    
+    <meta name="twitter:image"
+        content="http://localhost:1313/img/icon.svg" />
+    
+        <meta name="twitter:description" content="&lt;p&gt;UCS is a shortest path algorith that&amp;rsquo;s similar to Dijkstra algorithm. The only difference is that UCS will terminate as soon as it finds the goal node," />
+    
+
+<link rel="manifest" href="/manifest/index.json" />
+</head>
+
+
+<body>
+        <div id="baseContainer"><header class="">
+<div class="titleAndSearchContainer">
+        <div id="titleContainer">
+            
+                <a class="unstyledLink" href="/">
+                    <img src='/logo.svg' alt='Logo'/>
+                </a>
+            
+            <div class="rightOfLogo">
+                <div class="titleAndHamburger">
+                    <h1>
+                        <a class="unstyledLink" href="/">Bl9 Rambling</a>
+                        
+                    </h1>
+                    
+                </div>
+                <div id="wide_nav"><nav>
+    
+    <ul id="main-nav">
+        <li><a href="/">Home</a></li>
+        
+            <li><a href="/posts/">Posts</a></li>
+        
+        
+        
+        
+        
+        
+        
+            <li><a href="/tags/">Tags</a></li>
+        
+        
+    </ul>
+</nav>
+</div>
+            </div>
+        </div>
+        <div class="search">
+    <input id="searchbar" type="text" placeholder='Search' />
+    <span class="nerdlink" onclick="newSearch();">&#xf002;</span>
+</div>
+<script>
+    function newSearch() {
+        let term = searchbar.value.trim();
+        if (!term) return;
+        location.href = `/search/?q=${term}`;
+    }
+    searchbar.onkeyup = (ev) => {if (ev.keyCode == 13) newSearch()};
+</script>
+
+    </div>
+    <div id="links">
+        <a
+    
+        rel="noreferrer"
+    
+    target="_blank"
+    class="nerdlink"
+    href="/index.xml">
+    
+    
+        &#xf09e;
+    
+    <span>
+        RSS
+    </span>
+</a>
+
+        
+        
+    </div>
+    
+
+</header>
+<div id="contentContainer">
+                <div id="content">
+                    <main>
+<article class="card single">
+    
+        <h1>Ucs Shortest Path Algorithm</h1>
+    
+    
+        <p class="date">
+            <span title='Date'>󰃭 </span>
+    2025-12-07
+
+
+        </p>
+    
+    
+    
+    
+    <div><p>UCS is a shortest path algorith that&rsquo;s similar to Dijkstra algorithm. The only difference is that UCS will terminate as soon as it finds the goal node, while Dijkstra will continue to explore all possible paths until it has found the shortest path to all nodes in the graph.</p>
+<p>So based on that, to implement UCS, we can use a priority queue to keep track of the nodes to be explored, sorted by their cumulative cost from the start node. We will also maintain a set of visited nodes to avoid processing the same node multiple times.</p>
+<p>To summarize the steps of UCS algorithm:</p>
+<ol>
+<li>Initialize a priority queue with the start node and a cumulative cost of 0.</li>
+<li>While the priority queue is not empty:
+a. Dequeue the node with the lowest cumulative cost.
+b. If the node is the goal node, return the cumulative cost as the shortest path cost.
+c. If the node has not been visited:
+i. Mark the node as visited.
+ii. For each neighbor of the node, calculate the cumulative cost to reach that neighbor and enqueue it in the priority queue.</li>
+</ol>
+<p>Here&rsquo;s an example for simple UCS implementation in python:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> heapq
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> collections <span style="color:#f92672">import</span> defaultdict
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Graph</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">__init__</span>(self):
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>edges <span style="color:#f92672">=</span> defaultdict(list)
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>weights <span style="color:#f92672">=</span> {}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">add_edge</span>(self, from_node, to_node, weight):
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>edges[from_node]<span style="color:#f92672">.</span>append(to_node)
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>weights[(from_node, to_node)] <span style="color:#f92672">=</span> weight
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">ucs</span>(graph, start, goal):
+</span></span><span style="display:flex;"><span>    queue <span style="color:#f92672">=</span> [(<span style="color:#ae81ff">0</span>, start)]
+</span></span><span style="display:flex;"><span>    visited <span style="color:#f92672">=</span> set()
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> queue:
+</span></span><span style="display:flex;"><span>        (cost, node) <span style="color:#f92672">=</span> heapq<span style="color:#f92672">.</span>heappop(queue)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> node <span style="color:#f92672">in</span> visited:
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">continue</span>
+</span></span><span style="display:flex;"><span>        visited<span style="color:#f92672">.</span>add(node)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> node <span style="color:#f92672">==</span> goal:
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> cost
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> neighbor <span style="color:#f92672">in</span> graph<span style="color:#f92672">.</span>edges[node]:
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> neighbor <span style="color:#f92672">not</span> <span style="color:#f92672">in</span> visited:
+</span></span><span style="display:flex;"><span>                total_cost <span style="color:#f92672">=</span> cost <span style="color:#f92672">+</span> graph<span style="color:#f92672">.</span>weights[(node, neighbor)]
+</span></span><span style="display:flex;"><span>                heapq<span style="color:#f92672">.</span>heappush(queue, (total_cost, neighbor))
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> float(<span style="color:#e6db74">&#34;inf&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Example usage</span>
+</span></span><span style="display:flex;"><span>g <span style="color:#f92672">=</span> Graph()
+</span></span><span style="display:flex;"><span>g<span style="color:#f92672">.</span>add_edge(<span style="color:#e6db74">&#39;A&#39;</span>, <span style="color:#e6db74">&#39;B&#39;</span>, <span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>g<span style="color:#f92672">.</span>add_edge(<span style="color:#e6db74">&#39;A&#39;</span>, <span style="color:#e6db74">&#39;C&#39;</span>, <span style="color:#ae81ff">4</span>)
+</span></span><span style="display:flex;"><span>g<span style="color:#f92672">.</span>add_edge(<span style="color:#e6db74">&#39;B&#39;</span>, <span style="color:#e6db74">&#39;C&#39;</span>, <span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>g<span style="color:#f92672">.</span>add_edge(<span style="color:#e6db74">&#39;B&#39;</span>, <span style="color:#e6db74">&#39;D&#39;</span>, <span style="color:#ae81ff">5</span>)
+</span></span><span style="display:flex;"><span>g<span style="color:#f92672">.</span>add_edge(<span style="color:#e6db74">&#39;C&#39;</span>, <span style="color:#e6db74">&#39;D&#39;</span>, <span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>start <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;A&#39;</span>
+</span></span><span style="display:flex;"><span>goal <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;D&#39;</span>
+</span></span><span style="display:flex;"><span>cost <span style="color:#f92672">=</span> ucs(g, start, goal)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;The cost of the shortest path from </span><span style="color:#e6db74">{</span>start<span style="color:#e6db74">}</span><span style="color:#e6db74"> to </span><span style="color:#e6db74">{</span>goal<span style="color:#e6db74">}</span><span style="color:#e6db74"> is </span><span style="color:#e6db74">{</span>cost<span style="color:#e6db74">}</span><span style="color:#e6db74">.&#34;</span>)
+</span></span></code></pre></div></div>
+</article>
+
+
+
+
+
+
+                    </main><footer>
+    <hr />
+
+<p><small>
+        2025 &copy; 
+    </small></p>
+    <p><small>
+        <a href='https://gitlab.com/gabmus/hugo-ficurinia'>Ficurinia theme</a> for <a href='https://gohugo.io'>Hugo</a> by <a href='https://gabmus.org'>Gabriele Musco</a>. Licensed under <a href='https://www.gnu.org/licenses/agpl-3.0.html'>GNU AGPLv3</a>.
+    </small></p>
+</footer>
+</div>
+            </div>
+        </div>
+
+
+</body>
+</html>

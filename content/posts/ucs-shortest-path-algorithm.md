@@ -1,6 +1,7 @@
 +++
 date = '2025-12-07T14:55:06-05:00'
-draft = true
+draft = false
+categories = ['algorithms', 'graphs']
 title = 'Ucs Shortest Path Algorithm'
 +++
 
